@@ -6,7 +6,7 @@ export default function AddCategory({ setCategories }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue.trim().length > 3) {
-            setCategories((categories) => [inputValue, ...categories]);
+            setCategories(inputValue);
             setInputValue("");
         }
     };

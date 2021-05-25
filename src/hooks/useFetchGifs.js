@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import getGifs from "../services/gifs";
+import getGifs from "../services/getGifs";
 
 export default function useFetchGifs(category) {
     const [data, setData] = useState({

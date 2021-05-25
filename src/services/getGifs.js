@@ -1,8 +1,10 @@
+import { ENV } from "../env/env";
+
 export default async function getGifs(category) {
     const resp = await fetch(
-        `https://api.giphy.com/v1/gifs/search?q=${encodeURI(
+        `${ENV.urlAPP}gifs/search?q=${encodeURI(
             category
-        )}&limit=10&api_key=`
+        )}&api_key=${ENV.apiKEY}`
     );
 
     const { data } = await resp.json();
@@ -14,6 +16,5 @@ export default async function getGifs(category) {
             image: gif.images.downsized_medium.url,
         };
     });
-    // setImages(gifsData);
     return gifsData;
 }
