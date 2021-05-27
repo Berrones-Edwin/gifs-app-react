@@ -1,13 +1,19 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 
-export default function AddCategory({ setCategories }) {
+export default function AddCategory() {
     const [inputValue, setInputValue] = useState("");
+    const { replace } = useHistory();
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue.trim().length > 3) {
-            setCategories(inputValue);
             setInputValue("");
+            replace({
+                pathname:`gifs/${inputValue}`,
+
+            })
         }
     };
     const handleChangeInputValue = (e) => {

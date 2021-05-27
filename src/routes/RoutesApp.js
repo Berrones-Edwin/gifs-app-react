@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Error404Screen from "../pages/Error404Screen";
+import GifDetailScreen from "../pages/GifDetailScreen";
 import GifScreen from "../pages/GifScreen";
 import HomeScreen from "../pages/HomeScreen";
 import TrendingScreen from "../pages/TrendingScreen";
@@ -15,11 +16,16 @@ export const RoutesApp = () => {
                 <div>
                     <Switch>
                         <Route exact path="/" component={HomeScreen}></Route>
-                        <Route exact path="/gifs" component={GifScreen} />
                         <Route
                             exact
-                            path="/trending"
-                            component={TrendingScreen}
+                            path="/gifs/:keyword"
+                            component={GifScreen}
+                        />
+                        <Route
+           
+                            exact
+                            path="/gifs/details/:id"
+                            component={GifDetailScreen}
                         />
                         <Route
                             exact

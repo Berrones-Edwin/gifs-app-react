@@ -8,12 +8,6 @@ const NavBar = () => {
                 <li>
                     <NavLink to="/">Home</NavLink>
                 </li>
-                <li>
-                    <NavLink to="/trending">Trending Gifs</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/gifs">Search Gifs</NavLink>
-                </li>
             </ul>
         </nav>
     );

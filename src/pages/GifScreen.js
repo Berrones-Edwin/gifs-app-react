@@ -1,19 +1,16 @@
-import React, { useState } from "react";
-import AddCategory from "../components/AddCategory";
+import React from "react";
+import { useParams } from "react-router";
 import GridGif from "../components/GridGif";
+import useFetchGifs from "../hooks/useFetchGifs";
 
 const GifScreen = () => {
-    const [categories, setCategories] = useState([]);
+    const { keyword } = useParams();
+    const [data, loading] = useFetchGifs(keyword);
 
     return (
         <>
-            <h2>GifExpertApp</h2>
-            <AddCategory setCategories={setCategories} />
-            <hr />
-
-            <ul>
-                <GridGif key={categories} category={categories} />
-            </ul>
+            {loading && <p>Loading data...</p>}
+            <GridGif gifs={data} />
         </>
     );
 };

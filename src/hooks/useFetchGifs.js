@@ -1,21 +1,25 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import GifContext from "../context/GifContextProvider";
 
 import getGifs from "../services/getGifs";
 
-export default function useFetchGifs(category) {
-    const [data, setData] = useState({
-        data: [],
-        loading: true,
-    });
+export default function useFetchGifs(category = null) {
+    const {setGifs } = useContext(GifContext);
 
+    const [loading, setLoading] = useState(false);
+
+    let keywordToUse =
+        category || localStorage.getItem("last_search") || "random";
     useEffect(() => {
-        getGifs(category).then((imgs) =>
-            setData({
-                data: imgs,
-                loading: false,
-            })
-        );
-    }, [category]);
+        setGifs([]);
+        setLoading(true);
+        getGifs(keywordToUse).then((imgs) => {
+            setGifs(imgs);
+            setLoading(false);
 
-    return data;
+            localStorage.setItem("last_search", keywordToUse);
+        });
+    }, [keywordToUse, setGifs]);
+
+    return [ loading, keywordToUse];
 }
