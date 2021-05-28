@@ -1,10 +1,15 @@
-import { ENV } from "../env/env";
+import { ENV } from "env/env";
 
-export default async function getGifs(category) {
+export default async function getGifs({
+    limit = 15,
+    rating = "g",
+    keyword = "morty",
+    page = 0,
+} = {}) {
     const resp = await fetch(
-        `${ENV.urlAPP}gifs/search?q=${encodeURI(category)}&api_key=${
+        `${ENV.urlAPP}gifs/search?q=${encodeURI(keyword)}&api_key=${
             ENV.apiKEY
-        }`
+        }&limit=${limit}&offset=${page * limit}&rating=${rating}&lang=en`
     );
 
     const { data = [] } = await resp.json();

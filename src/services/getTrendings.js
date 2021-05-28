@@ -1,8 +1,7 @@
-import { ENV } from "../env/env";
+import { ENV } from "env/env";
 
 const fromApiResponseToGifs = (response) => {
     const { data = [] } = response
-
     return data;
 };
 

@@ -1,23 +1,26 @@
 import React from "react";
-import AddCategory from "../components/AddCategory";
-import GridGif from "../components/GridGif";
-import useFetchGifs from "../hooks/useFetchGifs";
-import { useGetGifs } from "../hooks/useGetGifs";
+import SearchForm from "components/SearchForm";
+import GridGif from "components/GridGif";
+import useFetchGifs from "hooks/useFetchGifs";
+import { useGetGifs } from "hooks/useGetGifs";
+import TrendingScreen from "./Tredings/index";
 
 const HomeScreen = () => {
     const [loading, keyword] = useFetchGifs();
     const gif = useGetGifs();
     return (
-        <>
-            <h2>{keyword}</h2>
-            <AddCategory />
+        <div style={{minHeight:'100vh'}}>
+           
+            <SearchForm />
+            
             <hr />
-
+            <h2>Tu Última busqueda {keyword}</h2>
             <ul>
                 {loading && <p>Loading data...</p>}
                 <GridGif gifs={gif} />
             </ul>
-        </>
+            <TrendingScreen />
+        </div>
     );
 };
 

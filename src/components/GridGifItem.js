@@ -3,12 +3,12 @@ import { useHistory } from "react-router";
 
 
 export default function GridGifItem({ title, image, id }) {
-    const { push } = useHistory();
+    const { replace } = useHistory();
 
 
     const handleGifDetail = () => {
-        push({
-            pathname: `gifs/details/${id}`,
+        replace({
+            pathname: `/gifs/details/${id}`,
         });
     };
     return (

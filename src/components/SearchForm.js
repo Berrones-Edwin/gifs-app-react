@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 
-export default function AddCategory() {
+export default function SearchForm() {
     const [inputValue, setInputValue] = useState("");
     const { replace } = useHistory();
 
