@@ -6,7 +6,7 @@ import { useGetGifs } from "hooks/useGetGifs";
 
 const GifScreen = () => {
     const { keyword } = useParams();
-    const [loading,keywordToUse] = useFetchGifs(keyword);
+    const [loading,keywordToUse, ,handleNextPage] = useFetchGifs(keyword);
     const gifs = useGetGifs();
 
 
@@ -15,6 +15,8 @@ const GifScreen = () => {
         <h3>{ keywordToUse }</h3>
             {loading && <p>Loading data...</p>}
             <GridGif gifs={gifs} />
+
+            <button onClick={handleNextPage}>Next Page</button>
         </>
     );
 };
