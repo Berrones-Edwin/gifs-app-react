@@ -1,7 +1,3 @@
-
-
-// import  from 'react'
-
 import { useContext } from "react"
 import GifContext from "../context/GifContextProvider"
 

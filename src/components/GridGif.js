@@ -8,6 +8,7 @@ export default function GridGif({ gifs }) {
                 {gifs.map(({ id, title, image }) => (
                     <GridGifItem key={id} id={id} title={title} image={image} />
                 ))}
+               
             </div>
         </>
     );
