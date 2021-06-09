@@ -1,7 +1,7 @@
 import { ENV } from "env/env";
 
 export default async function getGifs({
-    limit = 15,
+    limit = 5,
     rating = "g",
     keyword = "morty",
     page = 0,

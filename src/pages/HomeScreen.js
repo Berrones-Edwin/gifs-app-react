@@ -6,10 +6,10 @@ import { useGetGifs } from "hooks/useGetGifs";
 import TrendingScreen from "./Tredings/index";
 
 const HomeScreen = () => {
-    const [loading, keyword, , setPage] = useFetchGifs();
+    const { loading, keyword } = useFetchGifs();
     const gif = useGetGifs();
 
-    const handleNextPage = () => setPage((page) => page + 1);
+    // const handleNextPage = () => setPage((page) => page + 1);
     return (
         <div style={{ minHeight: "100vh" }}>
             <SearchForm />
@@ -20,7 +20,7 @@ const HomeScreen = () => {
                 {loading && <p>Loading data...</p>}
                 <GridGif gifs={gif} />
             </ul>
-            <button onClick={handleNextPage}>Next Page</button>
+            {/* <button onClick={handleNextPage}>Next Page</button> */}
             <TrendingScreen />
         </div>
     );

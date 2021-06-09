@@ -16,27 +16,25 @@ export default function useFetchGifs({ keyword, rating } = { keyword: null }) {
         keyword || localStorage.getItem("last_search") || "random";
 
     useEffect(() => {
-        setGifs([]);
         setLoading(true);
-        getGifs({ keyword: keywordToUse, rating, page }).then((imgs) => {
+
+        getGifs({ keyword: keywordToUse, rating }).then((imgs) => {
             setGifs(imgs);
             setLoading(false);
 
             localStorage.setItem("last_search", keywordToUse);
         });
-    }, [keyword, keywordToUse, rating, setGifs, page]);
+    }, [keyword, keywordToUse, rating, setGifs]);
 
     useEffect(() => {
         if (page === INITIAL_PAGE) return;
 
         setLoadingNextPage(true);
-        getGifs({ keyword: keywordToUse, rating }).then((imgs) => {
-            setGifs((prevImgs) => setGifs([...prevImgs, imgs]));
+        getGifs({ keyword: keywordToUse, page, rating }).then((nextGifs) => {
+            setGifs((prevGifs) => [...prevGifs, ...nextGifs]);
             setLoadingNextPage(false);
-
-            localStorage.setItem("last_search", keywordToUse);
         });
     }, [keywordToUse, page, rating, setGifs]);
 
-    return [loading, keywordToUse, loadingNextPage, setPage];
+    return { loading, keywordToUse, loadingNextPage, setPage };
 }
