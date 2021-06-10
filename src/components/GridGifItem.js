@@ -1,20 +1,18 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
-
-export default function GridGifItem({ title, image, id }) {
-    const { replace } = useHistory();
-
-
-    const handleGifDetail = () => {
-        replace({
-            pathname: `/gifs/details/${id}`,
-        });
-    };
+function GridGifItem({ title, image, id }) {
     return (
-        <div className="card" onClick={handleGifDetail}>
-            <img loading="lazy" src={image} alt={title} />
-            <p> {title}</p>
-        </div>
+        <Link to={`/gifs/details/${id}`}>
+            <div className="card">
+                <img loading="lazy" src={image} alt={title} />
+                <p> {title}</p>
+            </div>
+        </Link>
     );
 }
+
+export default React.memo(
+    GridGifItem,
+    (prevProps, nextProps) => prevProps.id === nextProps.id
+);

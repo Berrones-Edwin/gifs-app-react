@@ -6,7 +6,7 @@ import { useGetGifs } from "hooks/useGetGifs";
 import { useNearScreen } from "hooks/useNearScreen";
 import debounce from "just-debounce-it";
 
-const GifScreen = () => {
+const SearchResultScreen = () => {
     const { keyword } = useParams();
 
     const { loading, keywordToUse, setPage } = useFetchGifs({ keyword });
@@ -45,4 +45,4 @@ const GifScreen = () => {
     );
 };
 
-export default GifScreen;
+export default SearchResultScreen;

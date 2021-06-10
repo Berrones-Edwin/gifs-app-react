@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useCallback } from "react";
 import SearchForm from "components/SearchForm";
 import GridGif from "components/GridGif";
 import useFetchGifs from "hooks/useFetchGifs";
 import { useGetGifs } from "hooks/useGetGifs";
 import TrendingScreen from "./Tredings/index";
+import { useHistory } from "react-router";
 
 const HomeScreen = () => {
     const { loading, keyword } = useFetchGifs();
     const gif = useGetGifs();
+    const { replace } = useHistory();
 
-    // const handleNextPage = () => setPage((page) => page + 1);
+    const handleSubmit = useCallback(
+        ({ inputValue }) => {
+            replace({
+                pathname: `gifs/${inputValue}`,
+            });
+        },
+        [replace]
+    );
+    
     return (
         <div style={{ minHeight: "100vh" }}>
-            <SearchForm />
+            <SearchForm onsubmit={handleSubmit} />
 
             <hr />
             <h2>Tu Última busqueda {keyword}</h2>
@@ -20,7 +30,6 @@ const HomeScreen = () => {
                 {loading && <p>Loading data...</p>}
                 <GridGif gifs={gif} />
             </ul>
-            {/* <button onClick={handleNextPage}>Next Page</button> */}
             <TrendingScreen />
         </div>
     );

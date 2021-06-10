@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
 
-export default function SearchForm() {
+function SearchForm({ onsubmit }) {
     const [inputValue, setInputValue] = useState("");
-    const { replace } = useHistory();
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue.trim().length > 3) {
             setInputValue("");
-            replace({
-                pathname:`gifs/${inputValue}`,
-
-            })
+            onsubmit({ inputValue });
         }
     };
     const handleChangeInputValue = (e) => {
@@ -31,3 +25,5 @@ export default function SearchForm() {
         </form>
     );
 }
+
+export default React.memo(SearchForm);
