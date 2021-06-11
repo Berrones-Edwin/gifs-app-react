@@ -1,18 +1,36 @@
 import React from "react";
-import { useParams } from "react-router";
-import { useGetGifs } from "hooks/useGetGifs";
+import { useParams, Redirect } from "react-router";
+import useSingleGif from "hooks/useSingleGif";
+import Loader from "components/Loader/Loader";
+import Helmet from "react-helmet"
 
 const GifDetailScreen = () => {
     const { id } = useParams();
-    const gif = useGetGifs();
+    const { gif, isLoading, error } = useSingleGif({ id });
 
-    const { title, image } = gif.filter((g) => g.id === id)[0];
+    if (isLoading) {
+        return (
+            <>
+                <Helmet>
+                    <title> Loading...</title>
+                </Helmet>
+                <Loader />;
+            </>
+        );
+    }
+    if (error) return <Redirect to="/404" />;
+    if (!gif) return null;
+
     return (
         <>
+            <Helmet>
+                <title> {gif.title || "Gif Details"} </title>
+            </Helmet>
             <h3>
-                {title} - {id}
+                {gif.title} - {id}
             </h3>
-            <img src={image} alt={title} />
+
+            <img src={gif.image} alt={gif.title} />
         </>
     );
 };

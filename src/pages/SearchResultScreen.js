@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import GridGif from "components/GridGif";
+import Loader from "components/Loader/Loader";
 import useFetchGifs from "hooks/useFetchGifs";
 import { useGetGifs } from "hooks/useGetGifs";
 import { useNearScreen } from "hooks/useNearScreen";
 import debounce from "just-debounce-it";
+import Helmet from "react-helmet";
 
 const SearchResultScreen = () => {
     const { keyword } = useParams();
@@ -29,7 +31,6 @@ const SearchResultScreen = () => {
         function () {
             if (isNearScreen) {
                 debounceHandleNextPage();
-                // console.log(gifs);
             }
         },
         [debounceHandleNextPage, isNearScreen]
@@ -37,8 +38,11 @@ const SearchResultScreen = () => {
 
     return (
         <>
+            <Helmet>
+                <title> {keyword || "Search Page"} </title>
+            </Helmet>
             <h3>{keywordToUse}</h3>
-            {loading && <p>Loading data...</p>}
+            {loading && <Loader />}
             <GridGif gifs={gifs} />
             <div id="visor" ref={externalRef}></div>
         </>

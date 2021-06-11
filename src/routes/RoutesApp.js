@@ -32,6 +32,11 @@ export const RoutesApp = () => {
                                 path="/gifs/details/:id"
                                 component={GifDetailScreen}
                             />
+                            <Route
+                                exact
+                                path="/404"
+                                component={Error404Screen}
+                            />
                             <Route path="*" component={Error404Screen} />
                         </Switch>
                     </div>
