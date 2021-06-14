@@ -24,9 +24,14 @@ export const RoutesApp = () => {
                             ></Route>
                             <Route
                                 exact
-                                path="/gifs/:keyword"
+                                path="/gifs/:keyword/:rating?"
                                 component={SearchResultScreen}
                             />
+                            {/* <Route
+                                exact
+                                path="/gifs/:keyword/:rating"
+                                component={SearchResultScreen}
+                            /> */}
                             <Route
                                 exact
                                 path="/gifs/details/:id"

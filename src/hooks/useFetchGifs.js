@@ -5,7 +5,7 @@ import getGifs from "services/getGifs";
 
 const INITIAL_PAGE = 0;
 
-export default function useFetchGifs({ keyword, rating } = { keyword: null }) {
+export default function useFetchGifs({ keyword, rating } = { keyword: null,rating:'g' }) {
     const { setGifs } = useContext(GifContext);
 
     const [loading, setLoading] = useState(false);

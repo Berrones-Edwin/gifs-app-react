@@ -2,6 +2,7 @@ import React from "react";
 import GridGifItem from "./GridGifItem";
 
 export default function GridGif({ gifs }) {
+
     return (
         <>
             <div className="card-grid">

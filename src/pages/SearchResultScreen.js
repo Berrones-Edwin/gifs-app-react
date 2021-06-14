@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { useParams } from "react-router";
+
 import GridGif from "components/GridGif";
 import Loader from "components/Loader/Loader";
 import useFetchGifs from "hooks/useFetchGifs";
@@ -7,11 +8,16 @@ import { useGetGifs } from "hooks/useGetGifs";
 import { useNearScreen } from "hooks/useNearScreen";
 import debounce from "just-debounce-it";
 import Helmet from "react-helmet";
+import SearchForm from "components/SearchForm";
 
 const SearchResultScreen = () => {
-    const { keyword } = useParams();
+    const { keyword, rating } = useParams();
 
-    const { loading, keywordToUse, setPage } = useFetchGifs({ keyword });
+    const { loading, keywordToUse, setPage } = useFetchGifs({
+        keyword,
+        rating,
+    });
+    
     const gifs = useGetGifs();
 
     const externalRef = useRef();
@@ -41,7 +47,9 @@ const SearchResultScreen = () => {
             <Helmet>
                 <title> {keyword || "Search Page"} </title>
             </Helmet>
+
             <h3>{keywordToUse}</h3>
+            <SearchForm />
             {loading && <Loader />}
             <GridGif gifs={gifs} />
             <div id="visor" ref={externalRef}></div>
