@@ -13,11 +13,12 @@ import SearchForm from "components/SearchForm";
 const SearchResultScreen = () => {
     const { keyword, rating } = useParams();
 
+
     const { loading, keywordToUse, setPage } = useFetchGifs({
         keyword,
         rating,
     });
-    
+
     const gifs = useGetGifs();
 
     const externalRef = useRef();
@@ -45,11 +46,12 @@ const SearchResultScreen = () => {
     return (
         <>
             <Helmet>
-                <title> {keyword || "Search Page"} </title>
+                {/* <title> {keyword || "Search Page"} </title> */}
+                <title> {"Search Page"} </title>
             </Helmet>
 
             <h3>{keywordToUse}</h3>
-            <SearchForm />
+            <SearchForm initialRating={rating} ínitialKeyword={keyword} />
             {loading && <Loader />}
             <GridGif gifs={gifs} />
             <div id="visor" ref={externalRef}></div>

@@ -15,27 +15,23 @@ export const RoutesApp = () => {
             <BrowserRouter>
                 <NavBar />
                 <Suspense fallback={<Loader />}>
-                    <div>
+                    <div className="container">
                         <Switch>
                             <Route
                                 exact
                                 path="/"
                                 component={HomeScreen}
                             ></Route>
-                            <Route
-                                exact
-                                path="/gifs/:keyword/:rating?"
-                                component={SearchResultScreen}
-                            />
-                            {/* <Route
-                                exact
-                                path="/gifs/:keyword/:rating"
-                                component={SearchResultScreen}
-                            /> */}
+                            
                             <Route
                                 exact
                                 path="/gifs/details/:id"
                                 component={GifDetailScreen}
+                            />
+                            <Route
+                                exact
+                                path="/gifs/:keyword/:rating?"
+                                component={SearchResultScreen}
                             />
                             <Route
                                 exact

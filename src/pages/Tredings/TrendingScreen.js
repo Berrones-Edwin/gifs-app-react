@@ -16,11 +16,11 @@ const TrendingScreen = () => {
 
     return (
         <div>
-            <h3>Trending Gifs</h3>
+            <h3 className="text-center">Trending Gifs</h3>
             <ul>
                 {trending.map((t,idx) => (
-                    <li key={idx}>
-                        <NavLink  to={`/gifs/${t}`}>
+                    <li key={idx} className="btn btn-primary mb-2" style={{marginRight:".25rem"}}> 
+                        <NavLink style={{color:"white", textDecoration:"none"}} to={`/gifs/${t}`}>
                             {t}
                         </NavLink>
                     </li>

@@ -3,9 +3,11 @@ import { useHistory } from "react-router-dom";
 
 const RATINGS = ["g", "pg", "pg-13", "r"];
 
-function SearchForm() {
-    const [inputValue, setInputValue] = useState("");
-    const [rating, setRating] = useState(RATINGS[0]);
+function SearchForm({ ínitialKeyword = "", initialRating = "" }) {
+    const [inputValue, setInputValue] = useState(
+        decodeURIComponent(ínitialKeyword)
+    );
+    const [rating, setRating] = useState(initialRating);
 
     const history = useHistory();
 
@@ -26,22 +28,40 @@ function SearchForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                name="category"
-                value={inputValue}
-                autoComplete="off"
-                onChange={handleChangeInputValue}
-            />
-            <select value={rating} onChange={handleChangeRating}>
-                <option disabled>Select Rating</option>
-                {RATINGS.map((r) => (
-                    <option key={r}>{r}</option>
-                ))}
-            </select>
-            <input type="submit" value="search" />
-        </form>
+        <div className="mb-4">
+            <form onSubmit={handleSubmit} className="row">
+                <div className="col">
+                    <input
+                        type="text"
+                        name="category"
+                        value={inputValue}
+                        autoComplete="off"
+                        onChange={handleChangeInputValue}
+                        className="form-control "
+                        placeholder="Search gifs"
+                    />
+                </div>
+                <div className="col">
+                    <select
+                        value={rating}
+                        onChange={handleChangeRating}
+                        className="form-control"
+                    >
+                        <option disabled>Select Rating</option>
+                        {RATINGS.map((r) => (
+                            <option key={r}>{r}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="col">
+                    <input
+                        className="btn btn-primary"
+                        type="submit"
+                        value="search"
+                    />
+                </div>
+            </form>
+        </div>
     );
 }
 

@@ -7,24 +7,27 @@ import { useGetGifs } from "hooks/useGetGifs";
 import TrendingScreen from "./Tredings/index";
 
 const HomeScreen = () => {
-    const { loading, keyword } = useFetchGifs();
+    const { loading, keywordToUse } = useFetchGifs();
     const gif = useGetGifs();
-
     return (
         <>
             <Helmet>
-                <title> {keyword || "Home Page"} </title>
+                <title> {keywordToUse || "Home Page"} </title>
             </Helmet>
-            <div style={{ minHeight: "100vh" }}>
+            <div>
                 <SearchForm />
-
-                <hr />
-                <h2>Tu Última busqueda {keyword}</h2>
-                <ul>
-                    {loading && <p>Loading data...</p>}
-                    <GridGif gifs={gif} />
-                </ul>
-                <TrendingScreen />
+                <div className="row">
+                    <div className="col-md-9">
+                        <h2 className="text-center">Tu Última busqueda <b>{keywordToUse}</b></h2>
+                        <ul>
+                            {loading && <p>Loading data...</p>}
+                            <GridGif gifs={gif} />
+                        </ul>
+                    </div>
+                    <div className="col-md-3">
+                        <TrendingScreen />
+                    </div>
+                </div>
             </div>
         </>
     );

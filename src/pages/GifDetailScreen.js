@@ -2,10 +2,11 @@ import React from "react";
 import { useParams, Redirect } from "react-router";
 import useSingleGif from "hooks/useSingleGif";
 import Loader from "components/Loader/Loader";
-import Helmet from "react-helmet"
+import Helmet from "react-helmet";
 
 const GifDetailScreen = () => {
     const { id } = useParams();
+
     const { gif, isLoading, error } = useSingleGif({ id });
 
     if (isLoading) {
@@ -26,11 +27,18 @@ const GifDetailScreen = () => {
             <Helmet>
                 <title> {gif.title || "Gif Details"} </title>
             </Helmet>
-            <h3>
-                {gif.title} - {id}
-            </h3>
+            {/* <h3>
+                {gif.title}
+            </h3> */}
 
-            <img src={gif.image} alt={gif.title} />
+            <div class="card" style={{ width: "18rem" }}>
+                <img src={gif.image} className="card-img-top" alt={gif.title} />
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {gif.title}
+                    </h5>
+                </div>
+            </div>
         </>
     );
 };
