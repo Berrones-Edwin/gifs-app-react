@@ -18,7 +18,7 @@ const HomeScreen = () => {
                 <SearchForm />
                 <div className="row">
                     <div className="col-md-9">
-                        <h2 className="text-center">Tu Última busqueda <b>{keywordToUse}</b></h2>
+                        <h2 className="text-center">Your Last Search <b>{keywordToUse}</b></h2>
                         <ul>
                             {loading && <p>Loading data...</p>}
                             <GridGif gifs={gif} />

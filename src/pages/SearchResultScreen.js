@@ -46,8 +46,7 @@ const SearchResultScreen = () => {
     return (
         <>
             <Helmet>
-                {/* <title> {keyword || "Search Page"} </title> */}
-                <title> {"Search Page"} </title>
+                <title> {keyword || "Search Page"} </title>
             </Helmet>
 
             <h3>{keywordToUse}</h3>

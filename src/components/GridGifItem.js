@@ -1,19 +1,11 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function GridGifItem({ title, image, id }) {
-    const { push } = useHistory();
-    let path = `/gifs/details/${id}`
+
+    let path = `/gifs/details/${id}`;
     return (
-        // <Link to={`/gifs/details/${id}`}>
-        <div
-            onClick={() =>
-                push({
-                    pathname: path,
-                })
-            }
-            className="card"
-        >
+        <Link to={path}>
             <img
                 loading="lazy"
                 className="card-img-top"
@@ -21,8 +13,7 @@ function GridGifItem({ title, image, id }) {
                 alt={title}
             />
             <p className="card-title"> {title}</p>
-        </div>
-        // </Link>
+        </Link>
     );
 }
 

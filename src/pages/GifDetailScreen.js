@@ -27,9 +27,6 @@ const GifDetailScreen = () => {
             <Helmet>
                 <title> {gif.title || "Gif Details"} </title>
             </Helmet>
-            {/* <h3>
-                {gif.title}
-            </h3> */}
 
             <div class="card" style={{ width: "18rem" }}>
                 <img src={gif.image} className="card-img-top" alt={gif.title} />
