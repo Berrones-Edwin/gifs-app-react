@@ -1,30 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
+import { useForm } from "../hooks/useForm";
 
 const RATINGS = ["g", "pg", "pg-13", "r"];
 
 function SearchForm({ ínitialKeyword = "", initialRating = "" }) {
-    const [inputValue, setInputValue] = useState(
-        decodeURIComponent(ínitialKeyword)
-    );
-    const [rating, setRating] = useState(initialRating);
+    const { inputValue, rating, updateKeyword, updateRating } = useForm({
+        ínitialKeyword,
+        initialRating,
+    });
 
     const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (inputValue.trim().length >= 3) {
-            setInputValue("");
             const path = `/gifs/${inputValue}/${rating}`;
             history.replace(path);
         }
     };
     const handleChangeInputValue = (e) => {
-        setInputValue(e.target.value);
+        updateKeyword(e.target.value);
     };
 
     const handleChangeRating = (e) => {
-        setRating(e.target.value);
+        updateRating(e.target.value);
     };
 
     return (
