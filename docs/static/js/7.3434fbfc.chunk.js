@@ -1,0 +1,2 @@
+(this["webpackJsonpgifs-app"]=this["webpackJsonpgifs-app"]||[]).push([[7],{52:function(e,t,c){"use strict";c.r(t);c(0);var n=c(37),s=c(9),r=c(1);t.default=function(){return Object(r.jsxs)(r.Fragment,{children:[Object(r.jsx)(n.a,{children:Object(r.jsx)("title",{children:" Page 404 "})}),Object(r.jsx)("h3",{children:"Error 404"}),Object(r.jsx)("p",{children:"Page not found"}),Object(r.jsx)(s.b,{to:"/",children:" Back go to home"})]})}}}]);
+//# sourceMappingURL=7.3434fbfc.chunk.js.map
