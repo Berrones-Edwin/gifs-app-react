@@ -1,24 +1,16 @@
+import useUser from "hooks/useUser";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
+    const { isLoggenIn, logout } = useUser();
+
     return (
-        // <nav className="navbar navbar-light bg-light">
-        //     <ul className="navbar-nav">
-        //         <li className="nav-item">
-        //             <NavLink className="nav-link" to="/">
-        //                 Home
-        //             </NavLink>
-        //         </li>
-        //     </ul>
-        // </nav>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
-            <div class="container-fluid">
-                <span class="navbar-brand">
-                    Gifs
-                </span>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+            <div className="container-fluid">
+                <span className="navbar-brand">Gifs</span>
                 <button
-                    class="navbar-toggler"
+                    className="navbar-toggler"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent"
@@ -26,19 +18,39 @@ const NavBar = () => {
                     aria-expanded="false"
                     aria-label="Toggle navigation"
                 >
-                    <span class="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon"></span>
                 </button>
                 <div
-                    class="collapse navbar-collapse"
+                    className="collapse navbar-collapse"
                     id="navbarSupportedContent"
                 >
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
                             <NavLink className="nav-link" to="/">
-                                Home 
+                                Home
                             </NavLink>
                         </li>
-                        <li class="nav-item"></li>
+                        <li className="nav-item"></li>
+                    </ul>
+
+                    <ul className="navbar-nav">
+                        {isLoggenIn ? (
+                            <li className="nav-item">
+                                <span
+                                    style={{ cursor: "pointer" }}
+                                    className="nav-link"
+                                    onClick={logout}
+                                >
+                                    Logout
+                                </span>
+                            </li>
+                        ) : (
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/login">
+                                    Login
+                                </NavLink>
+                            </li>
+                        )}
                     </ul>
                 </div>
             </div>
