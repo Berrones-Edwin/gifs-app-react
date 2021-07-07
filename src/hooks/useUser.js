@@ -5,6 +5,7 @@ import {
     logoutUserFirebase,
     registerWithUserAndPassword,
 } from "services/auth";
+import { useHistory } from "react-router-dom";
 
 const useUser = () => {
     const { user, setUser } = useContext(userContext);
@@ -12,6 +13,7 @@ const useUser = () => {
     const [error, setError] = useState(null);
     const [loadingRegister, setLoadingRegister] = useState(false);
     const [errorRegister, setErrorRegister] = useState(null);
+    const { push } = useHistory();
 
     const login = useCallback(
         ({ email, password }) => {
@@ -37,8 +39,13 @@ const useUser = () => {
     );
 
     const logout = useCallback(() => {
-        logoutUserFirebase().then(() => setUser(null));
-    }, [setUser]);
+        logoutUserFirebase().then(() => {
+            setUser(null);
+            push({
+                pathname: "/",
+            });
+        });
+    }, [setUser, push]);
 
     const register = useCallback(
         ({ email, password }) => {

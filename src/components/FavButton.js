@@ -1,6 +1,6 @@
+import React from "react";
 import useFavorites from "hooks/useFavorites";
 import useUser from "hooks/useUser";
-import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 const FavButton = ({ id }) => {

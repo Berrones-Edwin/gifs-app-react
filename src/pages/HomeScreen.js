@@ -2,6 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 import SearchForm from "components/SearchForm";
 import GridGif from "components/GridGif";
+import Loader from "components/Loader/Loader";
 import useFetchGifs from "hooks/useFetchGifs";
 import { useGetGifs } from "hooks/useGetGifs";
 import TrendingScreen from "./Tredings/index";
@@ -18,9 +19,11 @@ const HomeScreen = () => {
                 <SearchForm />
                 <div className="row">
                     <div className="col-md-9">
-                        <h2 className="text-center">Your Last Search <b>{keywordToUse}</b></h2>
+                        <h2 className="text-center">
+                            Your Last Search <b>{keywordToUse}</b>
+                        </h2>
                         <ul>
-                            {loading && <p>Loading data...</p>}
+                            {loading && <Loader />}
                             <GridGif gifs={gif} />
                         </ul>
                     </div>
