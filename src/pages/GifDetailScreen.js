@@ -28,12 +28,10 @@ const GifDetailScreen = () => {
                 <title> {gif.title || "Gif Details"} </title>
             </Helmet>
 
-            <div class="card" style={{ width: "18rem" }}>
+            <div className="card" style={{ width: "18rem" }}>
                 <img src={gif.image} className="card-img-top" alt={gif.title} />
-                <div class="card-body">
-                    <h5 class="card-title">
-                        {gif.title}
-                    </h5>
+                <div className="card-body">
+                    <h5 className="card-title">{gif.title}</h5>
                 </div>
             </div>
         </>

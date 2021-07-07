@@ -30,6 +30,13 @@ const NavBar = () => {
                                 Home
                             </NavLink>
                         </li>
+                        {isLoggenIn && (
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/favorites">
+                                    Favorites
+                                </NavLink>
+                            </li>
+                        )}
                         <li className="nav-item"></li>
                     </ul>
 
@@ -45,11 +52,21 @@ const NavBar = () => {
                                 </span>
                             </li>
                         ) : (
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/login">
-                                    Login
-                                </NavLink>
-                            </li>
+                            <>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/login">
+                                        Login
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink
+                                        className="nav-link"
+                                        to="/register"
+                                    >
+                                        Register
+                                    </NavLink>
+                                </li>
+                            </>
                         )}
                     </ul>
                 </div>

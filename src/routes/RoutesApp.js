@@ -13,6 +13,7 @@ const GifDetailScreen = lazy(() => import("pages/GifDetailScreen"));
 const Error404Screen = lazy(() => import("pages/Error404Screen"));
 const Login = lazy(() => import("pages/Login"));
 const Register = lazy(() => import("pages/Register"));
+const FavoritesScreen = lazy(() => import("pages/FavoritesScreen"));
 
 export const RoutesApp = () => {
     const { setUser } = useContext(userContext);
@@ -61,6 +62,11 @@ export const RoutesApp = () => {
                                 exact
                                 path="/register"
                                 component={Register}
+                            />
+                            <Route
+                                exact
+                                path="/favorites"
+                                component={FavoritesScreen}
                             />
                             <Route path="*" component={Error404Screen} />
                         </Switch>

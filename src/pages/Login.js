@@ -1,5 +1,6 @@
 import useUser from "hooks/useUser";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom";
 import Loader from "../components/Loader/Loader";
 
@@ -29,13 +30,18 @@ const Login = () => {
 
     useEffect(() => {
         if (isLoggenIn)
-            push({
-                pathname: "/",
-            });
+            setTimeout(() => {
+                push({
+                    pathname: "/",
+                });
+            }, 200);
     }, [isLoggenIn, push]);
 
     return (
         <>
+            <Helmet>
+                <title> Login Page </title>
+            </Helmet>
             <h3>Sign in</h3>
             {isLoginLoading && <Loader />}
             {!isLoginLoading && (
@@ -50,6 +56,7 @@ const Login = () => {
                                 type="text"
                                 className="form-control"
                                 placeholder="Enter your username"
+                                required
                             />
                         </div>
                         <div className="mb-3">
@@ -60,6 +67,7 @@ const Login = () => {
                                 value={password}
                                 type="password"
                                 placeholder="Enter your password"
+                                required
                             />
                         </div>
                         <input

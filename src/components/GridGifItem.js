@@ -7,7 +7,7 @@ function GridGifItem({ title, image, id }) {
     return (
         <>
             <Link to={path}>
-                <div class="card">
+                <div className="card">
                     <img
                         loading="lazy"
                         className="card-img-top"
@@ -16,7 +16,7 @@ function GridGifItem({ title, image, id }) {
                     />
                 </div>
             </Link>
-            <div class="card-body d-flex justify-content-between">
+            <div className="card-body d-flex justify-content-between">
                 <p className="card-title"> {title}</p>
                 <FavButton id={id} />
             </div>
