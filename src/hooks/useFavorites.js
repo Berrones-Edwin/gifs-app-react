@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { userContext } from "context/UserContext";
 import { saveFavoriteGif } from "services/favorites";
 import { FavoritesContext } from "context/FavoritesProvider";
