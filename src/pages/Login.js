@@ -9,8 +9,8 @@ const Login = () => {
     const { isLoggenIn, login, isLoginLoading, hasLoginError } = useUser();
 
     const [values, setValues] = useState({
-        username: "edwin@gmail.com",
-        password: "password",
+        username: "",
+        password: "",
     });
     const { username, password } = values;
 
