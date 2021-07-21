@@ -1,82 +1,98 @@
-import useUser from "hooks/useUser";
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import { useHistory } from "react-router-dom";
-import Loader from "../components/Loader/Loader";
+import useUser from 'hooks/useUser'
+import React, { useEffect } from 'react'
+import { Helmet } from 'react-helmet'
+import { useHistory } from 'react-router-dom'
+import { Formik, Field, Form, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
+import Loader from '../components/Loader/Loader'
 
 const Register = () => {
-    const { push } = useHistory();
+    const { push } = useHistory()
     const { isLoggenIn, register, isRegisterLoading, hasRegisterError } =
-        useUser();
-
-    const [values, setValues] = useState({
-        username: "",
-        password: "",
-    });
-    const { username, password } = values;
-
-    const handleChangeInputValue = (e) => {
-        setValues({
-            ...values,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (username.length > 0 && username.length > 8) {
-            register({ email: username, password });
-        }
-    };
+        useUser()
 
     useEffect(() => {
         if (isLoggenIn)
             setTimeout(() => {
                 push({
-                    pathname: "/",
-                });
-            }, 200);
-    }, [isLoggenIn, push]);
+                    pathname: '/',
+                })
+            }, 200)
+    }, [isLoggenIn, push])
 
     return (
         <>
             <Helmet>
                 <title> Register Page </title>
             </Helmet>
-            <h3>Register</h3>
+            <h3 className="text-center">Register</h3>
             {isRegisterLoading && <Loader />}
             {!isRegisterLoading && (
                 <div className="d-flex justify-content-center">
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <input
-                                autoComplete="off"
-                                name="username"
-                                onChange={handleChangeInputValue}
-                                value={username}
-                                type="text"
-                                className="form-control"
-                                placeholder="Enter your username"
-                                required
-                            />
+                    <Formik
+                        initialValues={{
+                            username: '',
+                            password: '',
+                        }}
+                        validationSchema={Yup.object({
+                            username: Yup.string()
+                                .email('Invalid Email Address')
+                                .required('Required'),
+                            password: Yup.string()
+                                .min(
+                                    8,
+                                    'The field password is invalid min 8 characters'
+                                )
+                                .required('Required'),
+                        })}
+                        onSubmit={(values, { setSubmitting }) => {
+                            register({
+                                email: values.username,
+                                password: values.password,
+                            })
+                            setSubmitting(false)
+                        }}
+                    >
+                        <div className="d-flex justify-content-center">
+                            <Form>
+                                <div className="mb-3">
+                                    <label htmlFor="username">Username</label>
+                                    <Field
+                                        autoComplete="off"
+                                        name="username"
+                                        type="email"
+                                        placeholder="Enter your username"
+                                        className="form-control mb-2"
+                                    />
+                                    <ErrorMessage
+                                        component="div"
+                                        className="alert alert-danger"
+                                        name="username"
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="password">Password</label>
+                                    <Field
+                                        autoComplete="off"
+                                        name="password"
+                                        type="password"
+                                        placeholder="Enter your password"
+                                        className="form-control mb-2"
+                                    />
+                                    <ErrorMessage
+                                        component="div"
+                                        className="alert alert-danger"
+                                        name="password"
+                                    />
+                                </div>
+                                <input
+                                    className="btn btn-primary"
+                                    type="submit"
+                                    value="Register"
+                                />
+                            </Form>
                         </div>
-                        <div className="mb-3">
-                            <input
-                                name="password"
-                                className="form-control"
-                                onChange={handleChangeInputValue}
-                                value={password}
-                                type="password"
-                                placeholder="Enter your password"
-                                required
-                            />
-                        </div>
-                        <input
-                            className="btn btn-primary"
-                            type="submit"
-                            value="Register"
-                        />
-                    </form>
+                    </Formik>
                 </div>
             )}
 
@@ -84,7 +100,7 @@ const Register = () => {
                 <h5>Opps!! An error ocurred. Try again later.</h5>
             )}
         </>
-    );
-};
+    )
+}
 
-export default Register;
+export default Register
