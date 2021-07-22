@@ -1,5 +1,5 @@
-import React from "react";
-import GridGifItem from "./GridGifItem";
+import React from 'react'
+import GridGifItem from './GridGifItem'
 
 export default function GridGif({ gifs }) {
     return (
@@ -17,5 +17,5 @@ export default function GridGif({ gifs }) {
                 ))}
             </div>
         </>
-    );
+    )
 }

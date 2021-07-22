@@ -28,103 +28,109 @@ const LoginScreen = () => {
             <section>
                 <div className="container">
                     {isLoginLoading && <Loader />}
-                    <div className="row">
-                        <div className="col-md-10 col-lg-8 col-xl-6 mx-auto">
-                            <div className="p-4 p-sm-5 bg-primary-soft rounded">
-                                <h2>Log in to your account</h2>
-                                {/* <!-- Form START --> */}
-                                <Formik
-                                    initialValues={{
-                                        username: '',
-                                        password: '',
-                                    }}
-                                    validationSchema={Yup.object({
-                                        username: Yup.string()
-                                            .email('Invalid Email Address')
-                                            .required('Required'),
-                                        password: Yup.string()
-                                            .min(
-                                                8,
-                                                'The field password is invalid min 8 characters'
-                                            )
-                                            .required('Required'),
-                                    })}
-                                    onSubmit={(values, { setSubmitting }) => {
-                                        login({
-                                            email: values.username,
-                                            password: values.password,
-                                        })
-                                        setSubmitting(false)
-                                    }}
-                                >
-                                    <Form className="mt-4">
-                                        {/* <!-- Email --> */}
-                                        <div className="mb-3">
-                                            <label
-                                                className="form-label"
-                                                htmlFor="username"
-                                            >
-                                                Email address
-                                            </label>
-                                            <Field
-                                                type="email"
-                                                className="form-control"
-                                                id="username"
-                                                placeholder="E-mail"
-                                                autocomplete="off"
-                                                name="username"
-                                            />
-                                            <ErrorMessage
-                                                component="div"
-                                                className="alert alert-danger"
-                                                name="username"
-                                            />
-                                        </div>
-                                        {/* <!-- Password --> */}
-                                        <div className="mb-3">
-                                            <label
-                                                className="form-label"
-                                                htmlFor="password"
-                                            >
-                                                Password
-                                            </label>
-                                            <Field
-                                                type="password"
-                                                className="form-control"
-                                                id="password"
-                                                placeholder="*********"
-                                                autocomplete="off"
-                                            />
-                                            <ErrorMessage
-                                                component="div"
-                                                className="alert alert-danger"
-                                                name="password"
-                                            />
-                                        </div>
-                                        {/* <!-- Button --> */}
-                                        <div className="row align-items-center">
-                                            <div className="col-sm-4">
-                                                <button
-                                                    type="submit"
-                                                    className="btn btn-success"
+                    {!isLoginLoading && (
+                        <div className="row">
+                            <div className="col-md-10 col-lg-8 col-xl-6 mx-auto">
+                                <div className="p-4 p-sm-5 bg-primary-soft rounded">
+                                    <h2>Log in to your account</h2>
+                                    {/* <!-- Form START --> */}
+                                    <Formik
+                                        initialValues={{
+                                            username: '',
+                                            password: '',
+                                        }}
+                                        validationSchema={Yup.object({
+                                            username: Yup.string()
+                                                .email('Invalid Email Address')
+                                                .required('Required'),
+                                            password: Yup.string()
+                                                .min(
+                                                    8,
+                                                    'The field password is invalid min 8 characters'
+                                                )
+                                                .required('Required'),
+                                        })}
+                                        onSubmit={(
+                                            values,
+                                            { setSubmitting }
+                                        ) => {
+                                            login({
+                                                email: values.username,
+                                                password: values.password,
+                                            })
+                                            setSubmitting(false)
+                                        }}
+                                    >
+                                        <Form className="mt-4">
+                                            {/* <!-- Email --> */}
+                                            <div className="mb-3">
+                                                <label
+                                                    className="form-label"
+                                                    htmlFor="username"
                                                 >
-                                                    Sign me in
-                                                </button>
+                                                    Email address
+                                                </label>
+                                                <Field
+                                                    type="email"
+                                                    className="form-control"
+                                                    id="username"
+                                                    placeholder="E-mail"
+                                                    autocomplete="off"
+                                                    name="username"
+                                                />
+                                                <ErrorMessage
+                                                    component="div"
+                                                    className="alert alert-danger"
+                                                    name="username"
+                                                />
                                             </div>
-                                            <div className="col-sm-8 text-sm-end">
-                                                <span>
-                                                    Don't have an account?
-                                                    <Link to="/register">
-                                                        Sign up{' '}
-                                                    </Link>
-                                                </span>
+                                            {/* <!-- Password --> */}
+                                            <div className="mb-3">
+                                                <label
+                                                    className="form-label"
+                                                    htmlFor="password"
+                                                >
+                                                    Password
+                                                </label>
+                                                <Field
+                                                    type="password"
+                                                    className="form-control"
+                                                    id="password"
+                                                    placeholder="*********"
+                                                    autocomplete="off"
+                                                    name="password"
+                                                />
+                                                <ErrorMessage
+                                                    component="div"
+                                                    className="alert alert-danger"
+                                                    name="password"
+                                                />
                                             </div>
-                                        </div>
-                                    </Form>
-                                </Formik>
+                                            {/* <!-- Button --> */}
+                                            <div className="row align-items-center">
+                                                <div className="col-sm-4">
+                                                    <button
+                                                        type="submit"
+                                                        className="btn btn-success"
+                                                    >
+                                                        Sign me in
+                                                    </button>
+                                                </div>
+                                                <div className="col-sm-8 text-sm-end">
+                                                    <span>
+                                                        Don't have an account?
+                                                        <Link to="/register">
+                                                            Sign up{' '}
+                                                        </Link>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </Form>
+                                    </Formik>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </section>
             {hasLoginError && (
