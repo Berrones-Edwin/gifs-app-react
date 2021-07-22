@@ -1,22 +1,22 @@
-import React, { lazy, Suspense, useContext, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { lazy, Suspense, useContext, useEffect } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import { firebase } from "../firebase/firebase";
+import { firebase } from '../firebase/firebase'
 
-import NavBar from "ui/NavBar";
-import Loader from "components/Loader/Loader";
-import { userContext } from "context/UserContext";
+import NavBar from 'ui/NavBar'
+import Loader from 'components/Loader/Loader'
+import { userContext } from 'context/UserContext'
 
-const HomeScreen = lazy(() => import("pages/HomeScreen"));
-const SearchResultScreen = lazy(() => import("pages/SearchResultScreen"));
-const GifDetailScreen = lazy(() => import("pages/GifDetailScreen"));
-const Error404Screen = lazy(() => import("pages/Error404Screen"));
-const Login = lazy(() => import("pages/Login"));
-const Register = lazy(() => import("pages/Register"));
-const FavoritesScreen = lazy(() => import("pages/FavoritesScreen"));
+const HomeScreen = lazy(() => import('pages/HomeScreen'))
+const SearchResultScreen = lazy(() => import('pages/SearchResultScreen'))
+const GifDetailScreen = lazy(() => import('pages/GifDetailScreen'))
+const Error404Screen = lazy(() => import('pages/Error404Screen'))
+const LoginScreen = lazy(() => import('pages/LoginScreen'))
+const Register = lazy(() => import('pages/Register'))
+const FavoritesScreen = lazy(() => import('pages/FavoritesScreen'))
 
 export const RoutesApp = () => {
-    const { setUser } = useContext(userContext);
+    const { setUser } = useContext(userContext)
     useEffect(() => {
         firebase.auth().onAuthStateChanged(async (user) => {
             if (user) {
@@ -24,10 +24,10 @@ export const RoutesApp = () => {
                     id: user.uid,
                     displayName: user.displayName,
                     email: user.email,
-                });
+                })
             }
-        });
-    }, [setUser]);
+        })
+    }, [setUser])
 
     return (
         <>
@@ -57,7 +57,11 @@ export const RoutesApp = () => {
                                 path="/404"
                                 component={Error404Screen}
                             />
-                            <Route exact path="/login" component={Login} />
+                            <Route
+                                exact
+                                path="/login"
+                                component={LoginScreen}
+                            />
                             <Route
                                 exact
                                 path="/register"
@@ -74,5 +78,5 @@ export const RoutesApp = () => {
                 </Suspense>
             </BrowserRouter>
         </>
-    );
-};
+    )
+}
