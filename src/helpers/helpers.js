@@ -1,3 +1,3 @@
-export const arrayJoin = (arr = []) => {
-    return arr.join();
-};
+export const numberRandom = () => {
+    return Math.round(Math.random() * 3)
+}

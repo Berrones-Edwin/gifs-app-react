@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import { firebase } from '../firebase/firebase'
 
-import NavBar from 'ui/NavBar'
+import Header from 'ui/Header'
 import Loader from 'components/Loader/Loader'
 import { userContext } from 'context/UserContext'
 
@@ -32,7 +32,8 @@ export const RoutesApp = () => {
     return (
         <>
             <BrowserRouter>
-                <NavBar />
+                {/* <NavBar /> */}
+                <Header />
                 <Suspense fallback={<Loader />}>
                     <div className="container">
                         <Switch>

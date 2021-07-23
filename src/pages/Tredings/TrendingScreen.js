@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { numberRandom } from 'helpers/helpers'
 
 import { getTrendingGifs } from 'services/getTrendings'
+
+const COLORCLASS = ['primary', 'warning', 'success', 'danger']
 
 const TrendingScreen = () => {
     const [trending, setTrending] = useState([])
@@ -16,16 +19,15 @@ const TrendingScreen = () => {
 
     return (
         <div>
-            <h3 className="text-center">Trending Gifs</h3>
-            <ul>
+            <h5 className="text-center">Trending Gifs</h5>
+            <hr />
+            <ul className="list-inline">
                 {trending.map((t, idx) => (
-                    <li
-                        key={idx}
-                        className="btn btn-primary mb-2"
-                        style={{ marginRight: '.25rem' }}
-                    >
+                    <li key={idx} className="list-inline-item mb-3">
                         <Link
-                            style={{ color: 'white', textDecoration: 'none' }}
+                            className={`btn btn-sm btn-outline-${
+                                COLORCLASS[numberRandom()]
+                            }`}
                             to={`/gifs/${t}`}
                         >
                             {t}
