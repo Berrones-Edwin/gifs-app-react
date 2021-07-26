@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { numberRandom } from 'helpers/helpers'
 
 import { getTrendingGifs } from 'services/getTrendings'
+import SearchForm from 'components/SearchForm'
 
 const COLORCLASS = ['primary', 'warning', 'success', 'danger']
 
@@ -19,6 +20,11 @@ const TrendingScreen = () => {
 
     return (
         <div>
+            <section className="mb-3">
+                <h5 className="text-center">Search Gifs</h5>
+                <SearchForm />
+            </section>
+
             <h5 className="text-center">Trending Gifs</h5>
             <hr />
             <ul className="list-inline">

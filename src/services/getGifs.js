@@ -15,15 +15,14 @@ export default async function getGifs({
     const { data = [] } = await resp.json()
     let gifsData = []
     if (Array.isArray(data)) {
-        // console.log(data)
         gifsData = data.map((gif) => {
-            // console.log(gif.import_datetime)
             return {
                 id: gif.id,
                 title: gif.title,
                 image: gif.images.downsized_medium.url,
                 datetime_imp: gif.import_datetime,
                 rating: gif.rating,
+                user: gif.user,
             }
         })
     }

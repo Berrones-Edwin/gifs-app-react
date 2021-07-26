@@ -32,7 +32,6 @@ export const RoutesApp = () => {
     return (
         <>
             <BrowserRouter>
-                {/* <NavBar /> */}
                 <Header />
                 <Suspense fallback={<Loader />}>
                     <div className="container">

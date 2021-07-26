@@ -1,6 +1,5 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import SearchForm from 'components/SearchForm'
 import GridGif from 'components/GridGif'
 import Loader from 'components/Loader/Loader'
 import useFetchGifs from 'hooks/useFetchGifs'
@@ -19,7 +18,7 @@ const HomeScreen = () => {
                 <title> {keywordToUse || 'Home Page'} </title>
             </Helmet>
             <HeroImage title={keywordToUse} />
-            {/* <SearchForm /> */}
+
             <div className="row">
                 <div className="col-lg-9">
                     <GridGif gifs={gif} />

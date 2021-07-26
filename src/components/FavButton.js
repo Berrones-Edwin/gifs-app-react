@@ -2,6 +2,7 @@ import React from 'react'
 import useFavorites from 'hooks/useFavorites'
 import useUser from 'hooks/useUser'
 import { useHistory } from 'react-router-dom'
+import { FaHeart, FaTrash } from 'react-icons/fa'
 
 const FavButton = ({ id }) => {
     const { isLoggenIn } = useUser()
@@ -21,16 +22,16 @@ const FavButton = ({ id }) => {
         }
     }
 
-    const [label, classBtn] = isFavorite({ id })
-        ? ['Delete', 'secondary']
-        : ['Fav', 'danger']
+    const [icon, classBtn] = isFavorite({ id })
+        ? [<FaTrash />, 'secondary']
+        : [<FaHeart />, 'danger']
 
     return (
         <button
             onClick={handleClickFav}
             className={`btn btn-sm btn-${classBtn}`}
         >
-            {label}
+            {icon}
         </button>
     )
 }

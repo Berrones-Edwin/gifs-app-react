@@ -52,7 +52,7 @@ const SearchResultScreen = () => {
             </Helmet>
 
             <HeroImage title={keywordToUse} />
-            <SearchForm initialRating={rating} ínitialKeyword={keyword} />
+            <SearchForm large initialRating={rating} ínitialKeyword={keyword} />
 
             <GridGif gifs={gifs} />
             <div id="visor" ref={externalRef}></div>
