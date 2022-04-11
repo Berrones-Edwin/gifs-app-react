@@ -20,8 +20,6 @@ const Error404Screen = () => {
                             </p>
 
                             <Link to="/" class="btn btn-danger mt-3">
-                                {/* {' '} */}
-                                {/* <i class="fas fa-long-arrow-alt-left me-3"></i>{' '} */}
                                 Back to home page
                             </Link>
                         </div>
